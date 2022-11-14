@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NewsItem from './NewsItem';
 
 export class News extends Component {
+	//NOTE: in this way we declare variables
 	articles = [
 		{
 			source: {
@@ -340,50 +341,33 @@ export class News extends Component {
 				'Bestselling author Michael Lewis, whose books include The Big Short and Flash Boys, is writing about the former boss of the failed cryptocurrency exchange for his next book.\r\nFTX, which was the world… [+2227 chars]',
 		},
 	];
+	//NOTE: to need to use {states} we use constructor and it is always called when the news.js or the file in which it is formed is called
 	constructor() {
 		super();
-		console.log('this is a constructor for News component');
-		this.state = {
+		// console.log('this is a constructor for News component');
+		this.articlesAllObj = {
 			articles: this.articles,
-			loading: false,
 		};
 	}
 	render() {
 		return (
 			<div>
-				<h2 className="container my-2">NewsMonkey - Top Headlines</h2>
+				<h2 className="container my-2 text-light">NewsMonkey - Top Headlines</h2>
 				<div className="my-2 container">
 					<div className="row">
-						<div className="col-md-4">
-							<NewsItem
-								title="NewsMonkey"
-								description="NewsWebsite"
-								imageUrl={
-									'https://media.cnn.com/api/v1/images/stellar/prod/221114121103-04-istanbul-attack-111422.jpg?c=16x9&q=w_800,c_fill'
-								}
-								newsUrl={'TODO'}
-							/>
-						</div>
-						<div className="col-md-4">
-							<NewsItem
-								title="NewsMonkey"
-								description="NewsWebsite"
-								imageUrl={
-									'https://media.cnn.com/api/v1/images/stellar/prod/221114121103-04-istanbul-attack-111422.jpg?c=16x9&q=w_800,c_fill'
-								}
-								newsUrl={'TODO'}
-							/>
-						</div>
-						<div className="col-md-4">
-							<NewsItem
-								title="NewsMonkey"
-								description="NewsWebsite"
-								imageUrl={
-									'https://media.cnn.com/api/v1/images/stellar/prod/221114121103-04-istanbul-attack-111422.jpg?c=16x9&q=w_800,c_fill'
-								}
-								newsUrl={'TODO'}
-							/>
-						</div>
+						{this.articlesAllObj.articles.map((element) => {
+							return (
+								<div className="col-md-4" key={element.urlToImage}>
+									<NewsItem
+										//NOTE:key is used to uniquely identify the elements when iterating in map using array
+										title={element.title.slice(0, 45)}
+										description={element.description.slice(0, 88)}
+										imageUrl={element.urlToImage}
+										newsUrl={element.url}
+									/>
+								</div>
+							);
+						})}
 					</div>
 				</div>
 			</div>
