@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import './css/All.css';
 export class Navbar extends Component {
 	render() {
+		//NOTE: this is how you declare variable and function with return.
+		// let ahsanZahoor = 'ahsanZ'
+		// function ahsan() {
+		// 	return 'ahsan'
+		// }
 		return (
 			<div>
 				<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 					<div className="container-fluid">
 						<a className="navbar-brand" href="/">
+							{/* NewsMonkey - {ahsan()} -
+							NewsMonkey - {ahsanZahoor} */}
 							NewsMonkey
 						</a>
 						<button
@@ -24,13 +31,13 @@ export class Navbar extends Component {
 							className="collapse navbar-collapse"
 							id="navbarSupportedContent"
 						>
-							<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-								{/* <li className="nav-item">
+							{/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+								<li className="nav-item">
 									<a className="nav-link active" aria-current="page" href="/">
 										Home
 									</a>
-								</li> */}
-							</ul>
+								</li>
+							</ul> */}
 						</div>
 					</div>
 				</nav>

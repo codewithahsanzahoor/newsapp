@@ -352,7 +352,9 @@ export class News extends Component {
 	render() {
 		return (
 			<div>
-				<h2 className="container my-2 text-light">NewsMonkey - Top Headlines</h2>
+				<h2 className="container my-2 text-light">
+					NewsMonkey - Top Headlines
+				</h2>
 				<div className="my-2 container">
 					<div className="row">
 						{this.articlesAllObj.articles.map((element) => {
