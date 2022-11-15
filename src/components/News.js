@@ -341,29 +341,46 @@ export class News extends Component {
 				'Bestselling author Michael Lewis, whose books include The Big Short and Flash Boys, is writing about the former boss of the failed cryptocurrency exchange for his next book.\r\nFTX, which was the world… [+2227 chars]',
 		},
 	];
-	//NOTE: to need to use {states} we use constructor and it is always called when the news.js or the file in which it is formed is called
+	//NOTE: to need to use {states} as {this.state} we use constructor and it is always called when the news.js or the file in which it is formed is called
 	constructor() {
 		super();
 		// console.log('this is a constructor for News component');
-		this.articlesAllObj = {
+		this.state = {
 			articles: this.articles,
 		};
+	}
+
+	//NOTE: we are using {async} for asynchronous nature and componentDidMount to operate it at the end of all the component News.js load in {return} then constructor runs then {componentDidMount} runs
+	async componentDidMount() {
+		// console.log('cdm');
+		let url =
+			'https://newsapi.org/v2/top-headlines?country=us&apiKey=209981397982442497a8d87bbfa5363f';
+		let data = await fetch(url);
+		let parsedData = await data.json();
+		console.log(parsedData);
+		this.setState({
+			articles: parsedData.articles,
+		});
 	}
 	render() {
 		return (
 			<div>
-				<h2 className="container my-2 text-light">
+				<h1 className="container my-2 text-light">
 					NewsMonkey - Top Headlines
-				</h2>
+				</h1>
 				<div className="my-2 container">
 					<div className="row">
-						{this.articlesAllObj.articles.map((element) => {
+						{this.state.articles.map((element) => {
 							return (
-								<div className="col-md-4" key={element.urlToImage}>
+								//NOTE:{key} is used to uniquely identify the elements when iterating in map using array
+								<div className="col-md-4" key={element.url}>
 									<NewsItem
-										//NOTE:key is used to uniquely identify the elements when iterating in map using array
-										title={element.title.slice(0, 45)}
-										description={element.description.slice(0, 88)}
+										title={element.title ? element.title.slice(0, 45) : ''}
+										description={
+											element.description
+												? element.description.slice(0, 88)
+												: ''
+										}
 										imageUrl={element.urlToImage}
 										newsUrl={element.url}
 									/>
